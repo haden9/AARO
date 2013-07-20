@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<pais nombre="Costa Rica">
-  <provincia nombre="Alajuela" />
-  <provincia nombre="Cartago" />
-  <provincia nombre="Guanacaste" />
-  <provincia nombre="Heredia" />
-  <provincia nombre="Limon" />
-  <provincia nombre="Puntarenas" />
-  <provincia nombre="San Jose" />
+<pais>
+  <provincia>
+    <nombre>Alajuela</nombre>
+  </provincia>
+  <provincia>
+    <nombre>Cartago</nombre>
+  </provincia>
+  <provincia>
+    <nombre>Guanacaste</nombre>
+  </provincia>
+  <provincia>
+    <nombre>Heredia</nombre>
+  </provincia>
+  <provincia>
+    <nombre>Limon</nombre>
+  </provincia>
+  <provincia>
+    <nombre>Puntarenas</nombre>
+  </provincia>
+  <provincia>
+    <nombre>San Jose</nombre>
+  </provincia>
 </pais>

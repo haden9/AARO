@@ -14,18 +14,18 @@
 
 1374346471 /home/jparra/cpp_workspace/AARO/include/Vector.h
 
-1374354076 source:/home/jparra/cpp_workspace/AARO/main.cpp
+1374358517 source:/home/jparra/cpp_workspace/AARO/main.cpp
 	<iostream>
 	<Nodo.h>
 	<rapidxml_utils.hpp>
 
-1242200778 /home/jparra/cpp_workspace/AARO/lib/rapidxml/rapidxml.hpp
+1374354574 /home/jparra/cpp_workspace/AARO/lib/rapidxml/rapidxml.hpp
 	<cstdlib>
 	<cassert>
 	<new>
 	<exception>
 
-1242449362 /home/jparra/cpp_workspace/AARO/lib/rapidxml/rapidxml_utils.hpp
+1374354574 /home/jparra/cpp_workspace/AARO/lib/rapidxml/rapidxml_utils.hpp
 	"rapidxml.hpp"
 	<vector>
 	<string>

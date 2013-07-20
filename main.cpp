@@ -7,6 +7,8 @@ using namespace std;
 int main()
 {
     rapidxml::file<> xmlFile("xml/pais.xml");
-    cout << xmlFile.data();
+    rapidxml::xml_document<> doc;
+    doc.parse<0>(xmlFile.data());
+    cout << doc.first_node()->last_node()->first_node()->value();
     return 0;
 }
