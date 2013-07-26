@@ -1,12 +1,11 @@
-#ifndef NODO_H
-#define NODO_H
+#ifndef NODE_H
+#define NODE_H
 
-
-class Nodo
+class Node
 {
     public:
-        Nodo();
-        virtual ~Nodo();
+        Node();
+        virtual ~Node();
     protected:
     private:
 };

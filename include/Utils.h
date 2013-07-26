@@ -9,8 +9,8 @@ using namespace std;
 class Utils
 {
     public:
-        static double getFastestPath(string origin, string destination);
-        static double getShortestDistance(string origin, string destination);
+        static double getFastestPath(Node *origin, Node *destination);
+        static double getShortestPath(Node *origin, Node *destination);
         static Node *getShortestVectorNode(Node *n);
     protected:
     private:
