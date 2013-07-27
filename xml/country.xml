@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<country name="Costa Rica">
+  <province name="Alajuela">
+    <route destination="Guanacaste" distance="5" velocity="90" />
+    <route destination="Heredia" distance="4" velocity="60" />
+    <route destination="San Jose" distance="3" velocity="50" />
+  </province>
+  <province name="Cartago">
+    <route destination="Limon" distance="2" velocity="50" />
+    <route destination="San Jose" distance="2" velocity="55" />
+  </province>
+  <province name="Guanacaste">
+    <route destination="Alajuela" distance="5" velocity="80" />
+    <route destination="Puntarenas" distance="4" velocity="70" />
+  </province>
+  <province name="Heredia">
+    <route destination="Alajuela" distance="4" velocity="75" />
+    <route destination="Limon" distance="5" velocity="90" />
+    <route destination="San Jose" distance="5" velocity="90" />
+  </province>
+  <province name="Limon">
+    <route destination="Cartago" distance="2" velocity="50" />
+    <route destination="Heredia" distance="5" velocity="80" />
+    <route destination="Puntarenas" distance="6" velocity="100" />
+  </province>
+  <province name="Puntarenas">
+    <route destination="Guanacaste" distance="4" velocity="70" />
+    <route destination="Limon" distance="6" velocity="100" />
+    <route destination="San Jose" distance="3" velocity="" />
+  </province>
+  <province name="San Jose">
+    <route destination="Alajuela" distance="3" velocity="60" />
+    <route destination="Cartago" distance="2" velocity="50" />
+    <route destination="Heredia" distance="5" velocity="85" />
+    <route destination="Puntarenas" distance="3" velocity="65" />
+  </province>
+</country>
