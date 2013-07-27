@@ -1,7 +1,7 @@
 #include "Edge.h"
 
-Edge::Edge(double magnitude, double maxVelocity, Node *origin, Node *destination)
-    : magnitude(magnitude), maxVelocity(maxVelocity), origin(origin), destination(destination)
+Edge::Edge(double magnitude, double maxVelocity, Node *destination)
+    : magnitude(magnitude), maxVelocity(maxVelocity), destination(destination)
 {
     //ctor
 }
@@ -17,10 +17,6 @@ double Edge::getMagnitude() {
 
 double Edge::getMaxVelocity() {
     return maxVelocity;
-}
-
-Node* Edge::getOrigin() {
-    return origin;
 }
 
 Node* Edge::getDestination() {

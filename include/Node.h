@@ -1,21 +1,22 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <string>
+
 //Forward Declarations
 class Edge;
-class Province;
 
 typedef std::vector<Edge*> Edges;
 
 class Node
 {
     public:
-        Node(Province *prov, double weight=0, bool status=false);
+        Node(std::string prov, double weight=0, bool status=false);
         virtual ~Node();
         //Accessors
         double getCurrentWeight();
         bool getStatus();
-        Province *getProvince();
+        std::string getProvince();
         Edges *getEdges();
         //Mutators
         void setCurrentWeight(double value);
@@ -25,7 +26,7 @@ class Node
     protected:
     private:
         Edges *elist;
-        Province *province;
+        std::string province;
         double currentWeight;
         bool status;
 

@@ -2,7 +2,7 @@
 #include <vector>
 #include "Node.h"
 
-Node::Node(Province *prov, double weight, bool status)
+Node::Node(std::string prov, double weight, bool status)
     : province(prov), currentWeight(weight), status(status)
 {
     //ctor
@@ -23,7 +23,7 @@ bool Node::getStatus() {
     return status;
 }
 
-Province* Node::getProvince() {
+std::string Node::getProvince() {
     return province;
 }
 
