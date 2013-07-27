@@ -1,6 +1,8 @@
+
+#include <string>
 #include "Province.h"
 
-Province::Province(string name)
+Province::Province(std::string name)
     : name(name)
 {
     //ctor
@@ -11,6 +13,6 @@ Province::~Province()
     //dtor
 }
 
-string Province::getName() {
+std::string Province::getName() {
     return name;
 }

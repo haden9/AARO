@@ -1,19 +1,15 @@
 #ifndef PROVINCE_H
 #define PROVINCE_H
 
-#include <string>
-
-using namespace std;
-
 class Province
 {
     public:
-        Province(string name);
+        Province(std::string name);
         virtual ~Province();
-        string getName();
+        std::string getName();
     protected:
     private:
-        string name;
+        std::string name;
 
 };
 

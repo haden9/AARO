@@ -1,19 +1,52 @@
-#include "Utils.h"
+#include <vector>
 
+#include "Utils.h"
+#include "Node.h"
+#include "Edge.h"
+
+//Dijkstra's Algorithm + velocity in vector
 static double getFastestPath(Node *origin, Node *destination) {
     return 0;
 }
 
-static double getShortestPath(Node *origin, Node *destination) {
+//Dijkstra's Algorithm
+static Nodes* getShortestPath(Node *origin, Node *destination, double currentDistance) {
 
-    double current_distance, tentative_distance;
+    //defines the list of visited nodes
+    //Nodes *nodeList {};
+    Nodes *nodeList;
+    //adds a new visited node to the nodeList
+    nodeList->push_back(origin);
 
+    if(origin != destination) {
 
+        Node *nextNode;
+        double edgeDistance = 0, tentativeDistance = 0;
 
-    return 0;
+        //Check all edges contained in origin node
+        for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+
+            //get edge ptr from edges at index i
+            Edge *e = origin->getEdges()->at(i);
+            //get the current ptr to the destination node referenced by edge
+            Node *n = e->getDestination();
+
+            //sets the new currentWeight of destination node
+            tentativeDistance = currentDistance + e->getMagnitude(); // tentativeDistance = distance traveled + edge magnitude
+            if(tentativeDistance < n->getCurrentWeight())
+                n->setCurrentWeight(tentativeDistance);
+
+            //compares if current lowest edge is lower than the next or 0
+            if(e->getMagnitude() < edgeDistance || edgeDistance == 0) {
+                //sets the current edge distance
+                edgeDistance = e->getMagnitude();
+                //sets the next node to be visited
+                nextNode = n;
+            }
+        }
+
+        return getShortestPath(nextNode, destination, tentativeDistance);
+    } else
+        return nodeList;
 }
 
-static Node *getShortestVectorNode(Node *n){
-    Province *sj = new Province("San Jose");
-    return new Node(sj);
-}

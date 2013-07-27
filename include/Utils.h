@@ -1,17 +1,17 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string>
-#include "Node.h"
+//Forward Declarations
+class Node;
+class Edge;
 
-using namespace std;
+typedef std::vector<Node*> Nodes;
 
 class Utils
 {
     public:
         static double getFastestPath(Node *origin, Node *destination);
-        static double getShortestPath(Node *origin, Node *destination);
-        static Node *getShortestVectorNode(Node *n);
+        static double *getShortestPath(Node *origin, Node *destination, double currentDistance=0);
     protected:
     private:
 };

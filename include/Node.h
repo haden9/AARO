@@ -1,30 +1,35 @@
 #ifndef NODE_H
 #define NODE_H
 
-#include <vector>
-#include "province.h"
+//Forward Declarations
+class Edge;
+class Province;
 
-typedef vector list;
+typedef std::vector<Edge*> Edges;
 
 class Node
 {
     public:
-        Node(Province *p, double currentWeight=0, bool status=false);
+        Node(Province *prov, double weight=0, bool status=false);
         virtual ~Node();
+        //Accessors
         double getCurrentWeight();
         bool getStatus();
         Province *getProvince();
-        list<Vector> *getVectorList();
+        Edges *getEdges();
+        //Mutators
         void setCurrentWeight(double value);
         void setStatus(bool value);
-        void addVector(Vector v);
-        void removeVector(Vector v);
+        void addEdge(Edge *e);
+        void removeEdge(Edge *e);
     protected:
     private:
+        Edges *elist;
+        Province *province;
         double currentWeight;
         bool status;
-        Province *province;
-        list<Vector> *vectorList; //list of connected vectors to this node
+
+
 };
 
-#endif // NODO_H
+#endif // NODE_H
