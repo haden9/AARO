@@ -1,4 +1,5 @@
 #include <vector>
+#include <stdlib.h>
 
 #include "Utils.h"
 #include "Node.h"
@@ -14,9 +15,11 @@ static Nodes* getShortestPath(Node *origin, Node *destination, double currentDis
 
     //defines the list of visited nodes
     //Nodes *nodeList {};
-    Nodes *nodeList;
+    Nodes* nodeList = (Nodes*)malloc(sizeof(nodeList));
     //adds a new visited node to the nodeList
     nodeList->push_back(origin);
+
+    free(nodeList);
 
     if(origin != destination) {
 
