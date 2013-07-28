@@ -15,11 +15,13 @@ class Node
         virtual ~Node();
         //Accessors
         double getCurrentWeight();
+        double getCurrentETA();
         bool getStatus();
         std::string getProvince();
         Edges *getEdges();
         //Mutators
         void setCurrentWeight(double value);
+        void setCurrentETA(double value);
         void setStatus(bool value);
         void addEdge(Edge *e);
         void removeEdge(Edge *e);
@@ -28,6 +30,7 @@ class Node
         Edges *elist;
         std::string province;
         double currentWeight;
+        double currentETA;
         bool status;
 
 

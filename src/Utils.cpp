@@ -18,56 +18,136 @@ Utils::~Utils()
 }
 
 //Dijkstra's Algorithm + velocity ( v = d / t ) in vector
-Nodes *getFastestPath(Node *origin, Node *destination) {
-    return NULL;
+Nodes *Utils::getFastestPath(Node *origin, Node *destination) {
+    calculateFastestRoutes(origin, destination);
+    return graphNodes;
 }
 
 //Dijkstra's Algorithm
-Nodes *getShortestPath(Node *origin, Node *destination, double currentDistance) {
+Nodes *Utils::getShortestPath(Node *origin, Node *destination) {
 
-    //defines the list of visited nodes
-    Nodes* nodeList = (Nodes*)malloc(sizeof(nodeList));
-    //adds a new visited node to the nodeList
-    nodeList->push_back(origin);
-
-    free(nodeList);
-
-    if(origin != destination) {
-
-        Node *nextNode;
-        double edgeDistance = 0, tentativeDistance = 0;
-
-        //Check all edges contained in origin node
-        for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
-
-            //get edge ptr from edges at index i
-            Edge *e = origin->getEdges()->at(i);
-            //get the current ptr to the destination node referenced by edge
-            Node *n = e->getDestination();
-
-            //if node status == visited omits node
-            if(n->getStatus())
-                continue;
-
-            //sets the new currentWeight of destination node
-            tentativeDistance = currentDistance + e->getMagnitude(); // tentativeDistance = distance traveled + edge magnitude
-            if(tentativeDistance < n->getCurrentWeight())
-                n->setCurrentWeight(tentativeDistance);
-
-            //compares if current lowest edge is lower than the next or 0
-            if(e->getMagnitude() < edgeDistance || edgeDistance == 0) {
-                //sets the current edge distance
-                edgeDistance = e->getMagnitude();
-                //sets the next node to be visited
-                nextNode = n;
-            }
-        }
-
-        //Nodo origen marcado como visitado
-        origin->setStatus(true);
-
-        return getShortestPath(nextNode, destination, tentativeDistance);
-    } else
-        return nodeList;
+    calculateShortestRoutes(origin, destination);
+    return graphNodes;
 }
 
+void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
+
+    //if destination has been visited
+    if(destination->getStatus())
+        return;
+
+    //Check all edges contained in origin node
+    for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+
+        //get edge ptr from edges at index i
+        Edge *e = origin->getEdges()->at(i);
+        //get the current ptr to the destination node referenced by edge
+        Node *n = e->getDestination();
+
+        //if node has not been visited
+        if(!n->getStatus()) {
+
+            //tentativeDistance = weight in node (shortest distance to node) + edge magnitude
+            double tentativeDistance = origin->getCurrentWeight() + e->getMagnitude();
+            //tentativeTime = tentativeDistance / maxVelocity of Edge
+            double tentativeTime = tentativeDistance / e->getMaxVelocity();
+
+            //compares if current lowest edge is lower than the next or 0
+            if(tentativeDistance < n->getCurrentWeight() || n->getCurrentWeight() == 0)
+                //sets the new currentWeight of destination node
+                n->setCurrentWeight(tentativeDistance);
+            if(tentativeTime < n->getCurrentETA() || n->getCurrentETA() == 0)
+                //sets the new currentWeight of destination node
+                n->setCurrentETA(tentativeTime);
+
+        }
+    }
+
+    Node *nearest;
+
+    //Keeps the list sorted by node weight
+    sortListByTime();
+
+    //finds the nearest node (shortest relative distance) on the list
+    for (unsigned int i = 0; i < graphNodes->size(); i++) {
+        if(graphNodes->at(i)->getCurrentWeight() > 0) {
+            nearest = graphNodes->at(i);
+            break;
+        }
+    }
+
+    //recursive call
+    calculateFastestRoutes(nearest, destination);
+}
+
+void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
+
+    //if destination has been visited
+    if(destination->getStatus())
+        return;
+
+    //Check all edges contained in origin node
+    for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+
+        //get edge ptr from edges at index i
+        Edge *e = origin->getEdges()->at(i);
+        //get the current ptr to the destination node referenced by edge
+        Node *n = e->getDestination();
+
+        //if node has not been visited
+        if(!n->getStatus()) {
+
+            //tentativeDistance = weight in node (shortest distance to node) + edge magnitude
+            double tentativeDistance = origin->getCurrentWeight() + e->getMagnitude();
+
+            //compares if current lowest edge is lower than the next or 0
+            if(tentativeDistance < n->getCurrentWeight() || n->getCurrentWeight() == 0)
+                //sets the new currentWeight of destination node
+                n->setCurrentWeight(tentativeDistance);
+        }
+    }
+
+    Node *nearest;
+
+    //Keeps the list sorted by node weight
+    sortListByWeight();
+
+    //finds the nearest node (shortest relative distance) on the list
+    for (unsigned int i = 0; i < graphNodes->size(); i++) {
+        if(graphNodes->at(i)->getCurrentWeight() > 0) {
+            nearest = graphNodes->at(i);
+            break;
+        }
+    }
+
+    //recursive call
+    calculateShortestRoutes(nearest, destination);
+}
+
+void Utils::sortListByWeight() {
+
+    unsigned int lSize = graphNodes->size()-1;
+    for(unsigned int i = 0; i < lSize; i++)
+        for(unsigned int r = 0; r < lSize-i; r++) {
+
+            Node *a = graphNodes->at(r);
+            Node *b = graphNodes->at(r+1);
+
+            if(a->getCurrentWeight() > b->getCurrentWeight())
+                swap(graphNodes[r], graphNodes[r+1]);
+        }
+}
+
+void Utils::sortListByTime() {
+
+    unsigned int lSize = graphNodes->size()-1;
+    for(unsigned int i = 0; i < lSize; i++)
+        for(unsigned int r = 0; r < lSize-i; r++) {
+
+            Node *a = graphNodes->at(r);
+            Node *b = graphNodes->at(r+1);
+
+            if(a->getCurrentETA() > b->getCurrentETA())
+                swap(graphNodes[r], graphNodes[r+1]);
+        }
+}

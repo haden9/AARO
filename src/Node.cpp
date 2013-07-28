@@ -19,6 +19,10 @@ double Node::getCurrentWeight() {
     return currentWeight;
 }
 
+double Node::getCurrentETA() {
+    return currentETA;
+}
+
 bool Node::getStatus() {
     return status;
 }
@@ -35,6 +39,10 @@ Edges* Node::getEdges() {
 
 void Node::setCurrentWeight(double value) {
     currentWeight = value;
+}
+
+void Node::setCurrentETA(double value) {
+    currentETA = value;
 }
 
 void Node::setStatus(bool value) {
