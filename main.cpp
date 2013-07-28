@@ -5,12 +5,21 @@
 
 #include "Node.h"
 #include "Edge.h"
+#include "Utils.h"
 
 using namespace rapidxml;
 using namespace std;
 
+typedef std::vector<Node*> Nodes;
+
 int main()
 {
+    Nodes *nodeList = (Nodes*)malloc(sizeof(nodeList));
+    /*AGREGAR AQUI NODOS A LISTA*/
+    /*AGREGAR AQUI NODOS A LISTA*/
+    /*AGREGAR AQUI NODOS A LISTA*/
+    Utils *u = new Utils(nodeList);
+
     xml_document<> xDoc;
     xml_node<> * rootNode;
 

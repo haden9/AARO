@@ -10,10 +10,12 @@ typedef std::vector<Node*> Nodes;
 class Utils
 {
     public:
-        static double getFastestPath(Node *origin, Node *destination);
-        static double *getShortestPath(Node *origin, Node *destination, double currentDistance=0);
-    protected:
+        Utils(Nodes *graphNodes);
+        virtual ~Utils();
+        Nodes *getFastestPath(Node *origin, Node *destination);
+        Nodes *getShortestPath(Node *origin, Node *destination, double currentDistance=0);
     private:
+        Nodes *graphNodes;
 };
 
 #endif // UTILS_H

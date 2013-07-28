@@ -5,16 +5,27 @@
 #include "Node.h"
 #include "Edge.h"
 
-//Dijkstra's Algorithm + velocity in vector
-static double getFastestPath(Node *origin, Node *destination) {
-    return 0;
+
+Utils::Utils(Nodes *nodeList)
+    : graphNodes(nodeList)
+{
+    //ctor
+}
+
+Utils::~Utils()
+{
+    //dtor
+}
+
+//Dijkstra's Algorithm + velocity ( v = d / t ) in vector
+Nodes *getFastestPath(Node *origin, Node *destination) {
+    return NULL;
 }
 
 //Dijkstra's Algorithm
-static Nodes* getShortestPath(Node *origin, Node *destination, double currentDistance) {
+Nodes *getShortestPath(Node *origin, Node *destination, double currentDistance) {
 
     //defines the list of visited nodes
-    //Nodes *nodeList {};
     Nodes* nodeList = (Nodes*)malloc(sizeof(nodeList));
     //adds a new visited node to the nodeList
     nodeList->push_back(origin);
@@ -34,6 +45,10 @@ static Nodes* getShortestPath(Node *origin, Node *destination, double currentDis
             //get the current ptr to the destination node referenced by edge
             Node *n = e->getDestination();
 
+            //if node status == visited omits node
+            if(n->getStatus())
+                continue;
+
             //sets the new currentWeight of destination node
             tentativeDistance = currentDistance + e->getMagnitude(); // tentativeDistance = distance traveled + edge magnitude
             if(tentativeDistance < n->getCurrentWeight())
@@ -47,6 +62,9 @@ static Nodes* getShortestPath(Node *origin, Node *destination, double currentDis
                 nextNode = n;
             }
         }
+
+        //Nodo origen marcado como visitado
+        origin->setStatus(true);
 
         return getShortestPath(nextNode, destination, tentativeDistance);
     } else
