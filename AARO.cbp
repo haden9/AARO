@@ -13,6 +13,10 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
+					<Add directory="lib/rapidxml" />
+					<Add directory="src" />
+					<Add directory="xml" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -32,7 +36,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="include/Edge.h" />
+		<Unit filename="include/Node.h" />
+		<Unit filename="include/Province.h" />
+		<Unit filename="include/Utils.h" />
+		<Unit filename="lib/rapidxml/rapidxml.hpp" />
+		<Unit filename="lib/rapidxml/rapidxml_iterators.hpp" />
+		<Unit filename="lib/rapidxml/rapidxml_print.hpp" />
+		<Unit filename="lib/rapidxml/rapidxml_utils.hpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Edge.cpp" />
+		<Unit filename="src/Node.cpp" />
+		<Unit filename="src/Province.cpp" />
+		<Unit filename="src/Utils.cpp" />
+		<Unit filename="xml/country.xml" />
 		<Extensions>
 			<code_completion />
 			<envvars />
