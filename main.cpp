@@ -25,11 +25,13 @@ int main()
     // Finding the root node
     rootNode = xDoc.first_node("country");
 
+    // Adding nodes to a vector
+    vector<Node*> nodeList;
+
     // Iterating over the provinces
     for(xml_node<> * provinceNode = rootNode->first_node("province"); provinceNode; provinceNode = provinceNode->next_sibling())
     {
         Node *prov = new Node(provinceNode->first_attribute("name")->value());
-        cout << "\nProvince: " + prov->getProvince() + "\n";
 
         // Iterating over the routes
         for(xml_node<> * routeNode = provinceNode->first_node("route"); routeNode; routeNode = routeNode->next_sibling())
@@ -38,9 +40,22 @@ int main()
             double magn = strtod(routeNode->first_attribute("distance")->value(), NULL);
             double mVel = strtod(routeNode->first_attribute("velocity")->value(), NULL);
             Edge *rout = new Edge(magn, mVel, dest);
-            cout << "\nDestination: " + rout->getDestination()->getProvince();
-            cout << "\nMagnitude: " << rout->getMagnitude() << " | Max Velocity: " << rout->getMaxVelocity() << "\n";
 
+            prov->addEdge(rout);
+        }
+
+        nodeList.push_back(prov);
+    }
+
+    for(unsigned i = 0; i < nodeList.size(); i++)
+    {
+        cout << nodeList.at(i)->getProvince() << "\n";
+
+        vector<Edge*> testEdgeList = nodeList.at(i)->getEdges();
+
+        for(unsigned i = 0; i < testEdgeList.size(); i++)
+        {
+            cout << testEdgeList.at(i)->getDestination()->getProvince() << "\n";
         }
     }
     return 0;

@@ -27,10 +27,10 @@ static Nodes* getShortestPath(Node *origin, Node *destination, double currentDis
         double edgeDistance = 0, tentativeDistance = 0;
 
         //Check all edges contained in origin node
-        for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+        for (unsigned int i = 0; i < origin->getEdges().size(); i++) {
 
             //get edge ptr from edges at index i
-            Edge *e = origin->getEdges()->at(i);
+            Edge *e = origin->getEdges().at(i);
             //get the current ptr to the destination node referenced by edge
             Node *n = e->getDestination();
 

@@ -1,12 +1,10 @@
 #ifndef NODE_H
 #define NODE_H
 
+#include <vector>
 #include <string>
 
-//Forward Declarations
-class Edge;
-
-typedef std::vector<Edge*> Edges;
+#include "Edge.h"
 
 class Node
 {
@@ -17,7 +15,7 @@ class Node
         double getCurrentWeight();
         bool getStatus();
         std::string getProvince();
-        Edges *getEdges();
+        std::vector<Edge*> getEdges();
         //Mutators
         void setCurrentWeight(double value);
         void setStatus(bool value);
@@ -25,7 +23,7 @@ class Node
         void removeEdge(Edge *e);
     protected:
     private:
-        Edges *elist;
+        std::vector<Edge*> edgeList;
         std::string province;
         double currentWeight;
         bool status;

@@ -38,7 +38,6 @@
 		</Compiler>
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Node.h" />
-		<Unit filename="include/Province.h" />
 		<Unit filename="include/Utils.h" />
 		<Unit filename="lib/rapidxml/rapidxml.hpp" />
 		<Unit filename="lib/rapidxml/rapidxml_iterators.hpp" />
@@ -47,7 +46,6 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Node.cpp" />
-		<Unit filename="src/Province.cpp" />
 		<Unit filename="src/Utils.cpp" />
 		<Unit filename="xml/country.xml" />
 		<Extensions>

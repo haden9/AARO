@@ -27,8 +27,8 @@ std::string Node::getProvince() {
     return province;
 }
 
-Edges* Node::getEdges() {
-    return elist;
+std::vector<Edge*> Node::getEdges() {
+    return edgeList;
 }
 
 //Mutators
@@ -42,7 +42,7 @@ void Node::setStatus(bool value) {
 }
 
 void Node::addEdge(Edge *e) {
-    elist->push_back(e);
+    edgeList.push_back(e);
 }
 void Node::removeEdge(Edge *e) {
     //Pendiente
