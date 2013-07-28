@@ -5,21 +5,20 @@
 class Node;
 class Edge;
 
-typedef std::vector<Node*> Nodes;
-
 using std::swap;
+using namespace std;
 
 class Utils
 {
     public:
-        Utils(Nodes *graphNodes);
+        Utils(vector<Node*> graphNodes);
         virtual ~Utils();
         //Methods
-        Nodes *getFastestPath(Node *origin, Node *destination);
-        Nodes *getShortestPath(Node *origin, Node *destination);
+        vector<Node*> getFastestPath(Node *origin, Node *destination);
+        vector<Node*> getShortestPath(Node *origin, Node *destination);
 
     private:
-        Nodes *graphNodes;
+        vector<Node*> graphNodes;
         void calculateFastestRoutes(Node *origin, Node *destination);
         void calculateShortestRoutes(Node *origin, Node *destination);
         void sortListByWeight();

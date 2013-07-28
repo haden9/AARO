@@ -3,22 +3,22 @@
 
 #include <string>
 
+using namespace std;
+
 //Forward Declarations
 class Edge;
-
-typedef std::vector<Edge*> Edges;
 
 class Node
 {
     public:
-        Node(std::string prov, double weight=0, bool status=false);
+        Node(string prov, double weight=0, bool status=false);
         virtual ~Node();
         //Accessors
         double getCurrentWeight();
         double getCurrentETA();
         bool getStatus();
-        std::string getProvince();
-        Edges *getEdges();
+        string getProvince();
+        vector<Edge*> getEdges();
         //Mutators
         void setCurrentWeight(double value);
         void setCurrentETA(double value);
@@ -27,8 +27,8 @@ class Node
         void removeEdge(Edge *e);
     protected:
     private:
-        Edges *elist;
-        std::string province;
+        vector<Edge*> elist;
+        string province;
         double currentWeight;
         double currentETA;
         bool status;

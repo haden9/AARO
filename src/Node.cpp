@@ -1,6 +1,7 @@
-
 #include <vector>
 #include "Node.h"
+
+using namespace std;
 
 Node::Node(std::string prov, double weight, bool status)
     : province(prov), currentWeight(weight), status(status)
@@ -27,11 +28,11 @@ bool Node::getStatus() {
     return status;
 }
 
-std::string Node::getProvince() {
+string Node::getProvince() {
     return province;
 }
 
-Edges* Node::getEdges() {
+vector<Edge*> Node::getEdges() {
     return elist;
 }
 
@@ -50,11 +51,9 @@ void Node::setStatus(bool value) {
 }
 
 void Node::addEdge(Edge *e) {
-    elist->push_back(e);
+    elist.push_back(e);
 }
+
 void Node::removeEdge(Edge *e) {
     //Pendiente
 }
-
-
-

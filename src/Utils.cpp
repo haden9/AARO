@@ -5,8 +5,9 @@
 #include "Node.h"
 #include "Edge.h"
 
+using namespace std;
 
-Utils::Utils(Nodes *nodeList)
+Utils::Utils(vector<Node*> nodeList)
     : graphNodes(nodeList)
 {
     //ctor
@@ -18,13 +19,13 @@ Utils::~Utils()
 }
 
 //Dijkstra's Algorithm + velocity ( v = d / t ) in vector
-Nodes *Utils::getFastestPath(Node *origin, Node *destination) {
+vector<Node*> Utils::getFastestPath(Node *origin, Node *destination) {
     calculateFastestRoutes(origin, destination);
     return graphNodes;
 }
 
 //Dijkstra's Algorithm
-Nodes *Utils::getShortestPath(Node *origin, Node *destination) {
+vector<Node*> Utils::getShortestPath(Node *origin, Node *destination) {
 
     calculateShortestRoutes(origin, destination);
     return graphNodes;
@@ -37,10 +38,10 @@ void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
         return;
 
     //Check all edges contained in origin node
-    for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+    for (unsigned int i = 0; i < origin->getEdges().size(); i++) {
 
         //get edge ptr from edges at index i
-        Edge *e = origin->getEdges()->at(i);
+        Edge *e = origin->getEdges().at(i);
         //get the current ptr to the destination node referenced by edge
         Node *n = e->getDestination();
 
@@ -69,9 +70,9 @@ void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
     sortListByTime();
 
     //finds the nearest node (shortest relative distance) on the list
-    for (unsigned int i = 0; i < graphNodes->size(); i++) {
-        if(graphNodes->at(i)->getCurrentWeight() > 0) {
-            nearest = graphNodes->at(i);
+    for (unsigned int i = 0; i < graphNodes.size(); i++) {
+        if(graphNodes.at(i)->getCurrentWeight() > 0) {
+            nearest = graphNodes.at(i);
             break;
         }
     }
@@ -87,10 +88,10 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
         return;
 
     //Check all edges contained in origin node
-    for (unsigned int i = 0; i < origin->getEdges()->size(); i++) {
+    for (unsigned int i = 0; i < origin->getEdges().size(); i++) {
 
         //get edge ptr from edges at index i
-        Edge *e = origin->getEdges()->at(i);
+        Edge *e = origin->getEdges().at(i);
         //get the current ptr to the destination node referenced by edge
         Node *n = e->getDestination();
 
@@ -113,9 +114,9 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
     sortListByWeight();
 
     //finds the nearest node (shortest relative distance) on the list
-    for (unsigned int i = 0; i < graphNodes->size(); i++) {
-        if(graphNodes->at(i)->getCurrentWeight() > 0) {
-            nearest = graphNodes->at(i);
+    for (unsigned int i = 0; i < graphNodes.size(); i++) {
+        if(graphNodes.at(i)->getCurrentWeight() > 0) {
+            nearest = graphNodes.at(i);
             break;
         }
     }
@@ -126,12 +127,12 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
 
 void Utils::sortListByWeight() {
 
-    unsigned int lSize = graphNodes->size()-1;
+    unsigned int lSize = graphNodes.size()-1;
     for(unsigned int i = 0; i < lSize; i++)
         for(unsigned int r = 0; r < lSize-i; r++) {
 
-            Node *a = graphNodes->at(r);
-            Node *b = graphNodes->at(r+1);
+            Node *a = graphNodes.at(r);
+            Node *b = graphNodes.at(r+1);
 
             if(a->getCurrentWeight() > b->getCurrentWeight())
                 swap(graphNodes[r], graphNodes[r+1]);
@@ -140,12 +141,12 @@ void Utils::sortListByWeight() {
 
 void Utils::sortListByTime() {
 
-    unsigned int lSize = graphNodes->size()-1;
+    unsigned int lSize = graphNodes.size()-1;
     for(unsigned int i = 0; i < lSize; i++)
         for(unsigned int r = 0; r < lSize-i; r++) {
 
-            Node *a = graphNodes->at(r);
-            Node *b = graphNodes->at(r+1);
+            Node *a = graphNodes.at(r);
+            Node *b = graphNodes.at(r+1);
 
             if(a->getCurrentETA() > b->getCurrentETA())
                 swap(graphNodes[r], graphNodes[r+1]);
