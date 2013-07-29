@@ -5,8 +5,7 @@
 class Node;
 class Edge;
 
-using std::swap;
-using namespace std;
+using std::vector;
 
 class Utils
 {
@@ -19,11 +18,13 @@ class Utils
 
     private:
         vector<Node*> *graphNodes;
+        vector<Node*> *visitedNodes;
         void calculateFastestRoutes(Node *origin, Node *destination);
         void calculateShortestRoutes(Node *origin, Node *destination);
-        void sortListByWeight();
-        void sortListByTime();
-        Node* getNearestNode();
-
+        void removeNodeFromList(Node *node);
+        void sortListByWeight(vector<Node*> *list);
+        void sortListByTime(vector<Node*> *list);
+        Node* getNearestNodeByWeight();
+        Node* getNearestNodeByETA();
 };
 #endif // UTILS_H

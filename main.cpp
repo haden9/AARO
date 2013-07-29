@@ -12,6 +12,7 @@ using namespace std;
 
 void printMenu();
 void printMenuProvinces();
+void printShortestRoute();
 void selectRoute();
 Node *getSelectedNode();
 bool validRoute();
@@ -50,7 +51,7 @@ int main()
 
                 outputList = NULL;
                 outputList = u->getShortestPath(origin, destination);
-
+                printShortestRoute();
                 break;
             case 3:
                 if(!validRoute())
@@ -58,6 +59,7 @@ int main()
 
                 outputList = NULL;
                 outputList = u->getFastestPath(origin, destination);
+                printShortestRoute();
                 break;
             case 4:
                 //print route
@@ -99,6 +101,26 @@ void printMenuProvinces() {
     cout << "8 - Salir\n" << endl;
 }
 
+void printShortestRoute(){
+
+    string route;
+
+    for(unsigned int i = 0; i < outputList->size(); i++) {
+
+        int length = outputList->at(i)->getCurrentWeight();
+        string province = outputList->at(i)->getProvince();
+
+        route = (route == "") ? route : route + " -> ";
+        route =  route + province;
+    }
+
+    cout << route << endl;
+}
+
+void printFastestRoute(){
+
+}
+
 void selectRoute() {
 
     origin = NULL;
@@ -110,9 +132,15 @@ void selectRoute() {
 
     if(origin) {
 
-        cout << "\n|++++++++++| Seleccione: Destino |++++++++++|\n\n" << endl;
-        printMenuProvinces();
-        destination = getSelectedNode();
+        do {
+            if(origin == destination)
+                cout << "\n Destino no puede ser igual a origen \n" << endl;
+
+            cout << "\n|++++++++++| Seleccione: Destino |++++++++++|\n\n" << endl;
+            printMenuProvinces();
+            destination = getSelectedNode();
+
+        } while (origin == destination);
     }
 }
 
