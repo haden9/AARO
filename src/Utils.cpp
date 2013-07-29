@@ -64,6 +64,9 @@ void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
         }
     }
 
+    //after all edges calculated, sets status as visited
+    origin->setStatus(true);
+
     Node *nearest;
 
     //Keeps the list sorted by node weight
@@ -107,6 +110,9 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
                 n->setCurrentWeight(tentativeDistance);
         }
     }
+
+    //after all edges calculated, sets status as visited
+    origin->setStatus(true);
 
     Node *nearest;
 
