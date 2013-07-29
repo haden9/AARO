@@ -12,5 +12,5 @@
 *.la
 *.a
 
-bin/Debug/AARO.exe
+bin/
 AARO.depend
