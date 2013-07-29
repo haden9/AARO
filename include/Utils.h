@@ -11,14 +11,14 @@ using namespace std;
 class Utils
 {
     public:
-        Utils(vector<Node*> graphNodes);
+        Utils(vector<Node*> *graphNodes);
         virtual ~Utils();
         //Methods
-        vector<Node*> getFastestPath(Node *origin, Node *destination);
-        vector<Node*> getShortestPath(Node *origin, Node *destination);
+        vector<Node*> *getFastestPath(Node *origin, Node *destination);
+        vector<Node*> *getShortestPath(Node *origin, Node *destination);
 
     private:
-        vector<Node*> graphNodes;
+        vector<Node*> *graphNodes;
         void calculateFastestRoutes(Node *origin, Node *destination);
         void calculateShortestRoutes(Node *origin, Node *destination);
         void sortListByWeight();

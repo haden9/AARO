@@ -18,7 +18,7 @@ class Node
         double getCurrentETA();
         bool getStatus();
         string getProvince();
-        vector<Edge*> getEdges();
+        vector<Edge*> *getEdges();
         //Mutators
         void setCurrentWeight(double value);
         void setCurrentETA(double value);
@@ -27,7 +27,7 @@ class Node
         void removeEdge(Edge *e);
     protected:
     private:
-        vector<Edge*> elist;
+        vector<Edge*> *elist;
         string province;
         double currentWeight;
         double currentETA;

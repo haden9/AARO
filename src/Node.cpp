@@ -32,7 +32,7 @@ string Node::getProvince() {
     return province;
 }
 
-vector<Edge*> Node::getEdges() {
+vector<Edge*> *Node::getEdges() {
     return elist;
 }
 
@@ -51,7 +51,7 @@ void Node::setStatus(bool value) {
 }
 
 void Node::addEdge(Edge *e) {
-    elist.push_back(e);
+    elist->push_back(e);
 }
 
 void Node::removeEdge(Edge *e) {
