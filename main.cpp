@@ -13,7 +13,7 @@ using namespace std;
 void printMenu();
 void printMenuProvinces();
 void selectRoute();
-void setSelectedNode(Node *node);
+Node *getSelectedNode();
 bool validRoute();
 
 void readXML();
@@ -75,23 +75,27 @@ int main()
 
 void printMenu() {
 
-    cout << "|*******|Menu Principal|*******|\n\n" << endl;
-    cout << "1 - Seleccion de origen y destino\n" << endl;
-    cout << "2 - Calcular ruta mas corta\n" << endl;
-    cout << "3 - Calcular ruta mas rapida\n" << endl;
-    cout << "4 - Imprimir ruta actual\n" << endl;
+    string ori = (origin) ? origin->getProvince() : "Ninguno";
+    string dest = (destination) ? destination->getProvince() : "Ninguno";
+
+    cout << "\n|++++++++++| Menu Principal |++++++++++|\n\n" << endl;
+    cout << "Origen: "+ori+" \t Destino: "+dest+"\n\n" << endl;
+    cout << "1 - Seleccion de origen y destino" << endl;
+    cout << "2 - Calcular ruta mas corta" << endl;
+    cout << "3 - Calcular ruta mas rapida" << endl;
+    cout << "4 - Imprimir ruta actual" << endl;
     cout << "5 - Salir\n" << endl;
 }
 
 void printMenuProvinces() {
 
-    cout << "1 - Seleccionar: San Jose\n" << endl;
-    cout << "2 - Seleccionar: Alajuela\n" << endl;
-    cout << "3 - Seleccionar: Heredia\n" << endl;
-    cout << "4 - Seleccionar: Cartago\n" << endl;
-    cout << "5 - Seleccionar: Puntarenas\n" << endl;
-    cout << "6 - Seleccionar: Guanacaste\n" << endl;
-    cout << "7 - Seleccionar: Limon\n" << endl;
+    cout << "1 - Seleccionar: San Jose" << endl;
+    cout << "2 - Seleccionar: Alajuela" << endl;
+    cout << "3 - Seleccionar: Heredia" << endl;
+    cout << "4 - Seleccionar: Cartago" << endl;
+    cout << "5 - Seleccionar: Puntarenas" << endl;
+    cout << "6 - Seleccionar: Guanacaste" << endl;
+    cout << "7 - Seleccionar: Limon" << endl;
     cout << "8 - Salir\n" << endl;
 }
 
@@ -100,30 +104,31 @@ void selectRoute() {
     origin = NULL;
     destination = NULL;
 
-    cout << "|*******| Seleccione: Origen |*******|\n\n" << endl;
+    cout << "\n|++++++++++| Seleccione: Origen |++++++++++|\n\n" << endl;
     printMenuProvinces();
-    setSelectedNode(origin);
+    origin = getSelectedNode();
 
     if(origin) {
 
-        cout << "|*******| Seleccione: Destino |*******|\n\n" << endl;
+        cout << "\n|++++++++++| Seleccione: Destino |++++++++++|\n\n" << endl;
         printMenuProvinces();
-        setSelectedNode(destination);
+        destination = getSelectedNode();
     }
 }
 
 bool validRoute() {
 
     if(!origin)
-        cout << "Origen: No seleccionado\n" << endl;
-    else if (!destination)
-        cout << "Destino: No seleccionado\n" << endl;
+        cout << "\nOrigen: No seleccionado\n" << endl;
+    if (!destination)
+        cout << "\nDestino: No seleccionado\n" << endl;
 
     return (origin && destination) ? true : false;
 }
 
-void setSelectedNode(Node *node) {
+Node *getSelectedNode() {
 
+    Node *selected;
     bool finished;
     int input;
 
@@ -134,39 +139,42 @@ void setSelectedNode(Node *node) {
 
         switch(input) {
             case 1:
-                node = findProvinceNode("San Jose");
+                selected = findProvinceNode("San Jose");
                 finished = true;
                 break;
             case 2:
-                node = findProvinceNode("Alajuela");
+                selected = findProvinceNode("Alajuela");
                 finished = true;
                 break;
             case 3:
-                node = findProvinceNode("Heredia");
+                selected = findProvinceNode("Heredia");
                 finished = true;
                 break;
             case 4:
-                node = findProvinceNode("Cartago");
+                selected = findProvinceNode("Cartago");
                 finished = true;
                 break;
             case 5:
-                node = findProvinceNode("Puntarenas");
+                selected = findProvinceNode("Puntarenas");
                 finished = true;
                 break;
             case 6:
-                node = findProvinceNode("Guanacaste");
+                selected = findProvinceNode("Guanacaste");
                 finished = true;
                 break;
             case 7:
-                node = findProvinceNode("Limon");
+                selected = findProvinceNode("Limon");
                 finished = true;
                 break;
             case 8:
+                selected = NULL;
                 finished = true;
                 break;
             default: break;
         }
     }
+
+    return selected;
 }
 
 void readXML(){
