@@ -5,7 +5,6 @@
 #include "Node.h"
 #include "Edge.h"
 
-using namespace std;
 
 Utils::Utils(vector<Node*> *nodeList)
     : graphNodes(nodeList)
@@ -26,7 +25,6 @@ vector<Node*> *Utils::getFastestPath(Node *origin, Node *destination) {
 
 //Dijkstra's Algorithm
 vector<Node*> *Utils::getShortestPath(Node *origin, Node *destination) {
-
     calculateShortestRoutes(origin, destination);
     return graphNodes;
 }
@@ -63,6 +61,9 @@ void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
 
         }
     }
+
+    //after all edges calculated, sets status as visited
+    origin->setStatus(true);
 
     Node *nearest;
 
@@ -107,6 +108,9 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
                 n->setCurrentWeight(tentativeDistance);
         }
     }
+
+    //after all edges calculated, sets status as visited
+    origin->setStatus(true);
 
     Node *nearest;
 
