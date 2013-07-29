@@ -29,7 +29,7 @@ int main()
     bool finished;
     int input;
 
-    nodeList = (vector<Node*>*)malloc(sizeof(nodeList));
+    nodeList = new vector<Node*>();
     readXML();
     Utils *u = new Utils(nodeList);
 

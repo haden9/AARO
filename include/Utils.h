@@ -23,6 +23,7 @@ class Utils
         void calculateShortestRoutes(Node *origin, Node *destination);
         void sortListByWeight();
         void sortListByTime();
+        Node* getNearestNode();
 
 };
 #endif // UTILS_H

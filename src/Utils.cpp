@@ -20,6 +20,7 @@ Utils::~Utils()
 
 //Dijkstra's Algorithm + velocity ( v = d / t ) in vector
 vector<Node*> *Utils::getFastestPath(Node *origin, Node *destination) {
+
     calculateFastestRoutes(origin, destination);
     return graphNodes;
 }
@@ -67,14 +68,14 @@ void Utils::calculateFastestRoutes(Node *origin, Node *destination) {
     //after all edges calculated, sets status as visited
     origin->setStatus(true);
 
-    Node *nearest;
-
     //Keeps the list sorted by node weight
     sortListByTime();
 
+    Node *nearest;
+
     //finds the nearest node (shortest relative distance) on the list
     for (unsigned int i = 0; i < graphNodes->size(); i++) {
-        if(graphNodes->at(i)->getCurrentWeight() > 0) {
+        if(graphNodes->at(i)->getCurrentETA() > 0) {
             nearest = graphNodes->at(i);
             break;
         }
@@ -114,10 +115,10 @@ void Utils::calculateShortestRoutes(Node *origin, Node *destination) {
     //after all edges calculated, sets status as visited
     origin->setStatus(true);
 
-    Node *nearest;
-
     //Keeps the list sorted by node weight
     sortListByWeight();
+
+    Node *nearest;
 
     //finds the nearest node (shortest relative distance) on the list
     for (unsigned int i = 0; i < graphNodes->size(); i++) {
