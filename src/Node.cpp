@@ -1,5 +1,3 @@
-#include <stdlib.h>
-
 #include <vector>
 #include "Node.h"
 
