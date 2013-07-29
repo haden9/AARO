@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include <vector>
 #include "Node.h"
 
@@ -56,4 +58,8 @@ void Node::addEdge(Edge *e) {
 
 void Node::removeEdge(Edge *e) {
     //Pendiente
+}
+
+void Node::initializeEdges() {
+    elist = new vector<Edge*>();
 }

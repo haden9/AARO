@@ -62,6 +62,7 @@ void addEdgesToProvinces(vector<Node*>* nodeList, xml_node<> *rootNode){
     for(xml_node<> * provinceNode = rootNode->first_node("province"); provinceNode; provinceNode = provinceNode->next_sibling())
     {
         Node *ori = findProvinceNode(nodeList, provinceNode->first_attribute("name")->value());
+        ori->initializeEdges();
 
         // Iterating over the routes
         for(xml_node<> * routeNode = provinceNode->first_node("route"); routeNode; routeNode = routeNode->next_sibling()) {

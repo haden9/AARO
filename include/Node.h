@@ -23,6 +23,7 @@ class Node
         void setCurrentWeight(double value);
         void setCurrentETA(double value);
         void setStatus(bool value);
+        void initializeEdges();
         void addEdge(Edge *e);
         void removeEdge(Edge *e);
     protected:
